@@ -4,7 +4,7 @@
     <Button >Button pressed</Button>
     <Radio title="Radio button" @checked="checked($event)" :disabled="true"/>
     <Tabs>
-      <Tab name="Tab 1" selected="true">
+      <Tab name="Tab 1">
         <div>What we do</div>
       </Tab>
       <Tab name="Tab 2">

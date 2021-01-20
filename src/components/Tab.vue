@@ -9,11 +9,6 @@ export default {
         name: { required: true },
         selected: { default: false}
     },
-   
-    computed: {
-        href(){ return '#' + this.name.toLowerCase().replace(/ /g, '-')}
-    },
-   
 }
 </script>
 

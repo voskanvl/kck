@@ -22,8 +22,11 @@ export default {
     data() {
         return {tabs: [], active:'' };
     },
-    created() {
+    mounted() {
         this.tabs = this.$children;
+        this.active=this.tabs[this.tabs.length-1].name;
+        // this.$children.forEach(e=>e.selected='false');
+        this.tabs[this.tabs.length-1].selected="true";
     },
     methods: {
         select(selectedTab) {
