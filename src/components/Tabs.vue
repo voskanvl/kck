@@ -1,13 +1,12 @@
 <template>
     <div>
-        <div class="tabs">
+        <nav class="tabs">
               <ul class="tabs__headerlist">
-                <li v-for="(tab,idx) in tabs" :key="'tab'+idx" @click="select(tab)">
-                    <span  :class="{perspective:true, 'active': tab.name===active }"></span>
+                <li v-for="(tab,idx) in tabs" :key="'tab'+idx" @click="select(tab)" :class="{active: tab.name===active}">
                     <a  >{{ tab.name }}</a>
                 </li>
               </ul>
-        </div>
+        </nav>
         <div class="tabs__details">
             <slot></slot>
         </div>
@@ -24,9 +23,9 @@ export default {
     },
     mounted() {
         this.tabs = this.$children;
-        this.active=this.tabs[this.tabs.length-1].name;
+        this.active=this.tabs[0].name;
         // this.$children.forEach(e=>e.selected='false');
-        this.tabs[this.tabs.length-1].selected="true";
+        this.tabs[0].selected="true";
     },
     methods: {
         select(selectedTab) {
@@ -45,50 +44,57 @@ export default {
  $--tabs-active-bg: white;
  $--tabs-passive-bg:  rgb(237,238,239);
  $--tab-active-clr:rgb(0,150,218);
-.tabs__headerlist {
- display: flex;
- flex-direction: row-reverse;
- justify-content: flex-end;
- & a{
-   position: relative;
-   top: 1rem;
-   left: 1rem;
- }
+
+li {
+  display: inline-block;
+  margin-left: -16px;
+  cursor: pointer;
 }
-.perspective {
-  position: absolute;
-  height: 40px;
-  width: 100px;
-  left: -15px;
+
+nav a {
+  /* text-decoration: none; */
+  color: black;
   background-color: $--tabs-passive-bg;
-  transform: rotateX(40deg) rotateZ(0deg);
-  border-radius: 5px 5px 0 0;
-  z-index: -10;
-  box-shadow: 1px 1px 1px #eee;
-  &.active {
-    z-index: -1;
+  position: relative;
+  display: inline-block;
+  margin: 0 18px;
+  padding: 8px 13px;
+  border-radius: 3px 3px 0 0; 
+  &::before,&::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 23px;
+    height: 100%;
+    background-color: $--tabs-passive-bg;
+  }
+  &::before{
+    border-radius: 3px 0 0 0;
+    left: -13px; 
+  }
+  &::after{
+    border-radius: 0 3px 0 0;
+    transform: skew(24deg);
+    right: -13px; 
+    border-right: 1px solid #777;
+    z-index: 1; 
+  }
+  &:hover{
+    color:$--tab-active-clr
+  }
+}
+
+nav li.active {
+  & a{
+    color: $--tab-active-clr;
+    background-color: $--tabs-active-bg;
+  }
+  & a:before {
+    z-index: 1; 
+    background-color: $--tabs-active-bg;/* overlap prev element */
+  }
+  & a:after {
     background-color: $--tabs-active-bg;
   }
 }
-
-li {
-  list-style: none;
-  perspective: 75px;
-  perspective-origin: -15px;
-  position: relative;
-  margin-right: 3rem;
-  cursor: pointer;
-  &:hover{
-    z-index: 10;
-  }
-}
-.tabs__details{
-  position: relative;
-  top: 2rem;
-  left: 1rem;
-  margin: 1rem;
-  background-color: #fff;
-  z-index: 20;
-}
-
 </style>

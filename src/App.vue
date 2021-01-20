@@ -69,6 +69,7 @@ export default {
  font-family: Montserrat, Arial, Helvetica, sans-serif;
  box-sizing: border-box;
  font-size: 14px;
+ background-color: #f6f6f6;
 }
 
 </style>
