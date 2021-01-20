@@ -44,9 +44,11 @@ export default {
  $--tabs-active-bg: white;
  $--tabs-passive-bg:  rgb(237,238,239);
  $--tab-active-clr:rgb(0,150,218);
-
+ul{
+  display: flex;
+}
 li {
-  display: inline-block;
+  list-style: none;
   margin-left: -16px;
   cursor: pointer;
 }
