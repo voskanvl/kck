@@ -11,7 +11,7 @@
         <div>How much we do it for</div>
       </Tab>
       <Tab name="Tab 3">
-        <div>Why we do it</div>
+        <div>Lorem ipsum</div>
       </Tab>
     </Tabs>
   </div>

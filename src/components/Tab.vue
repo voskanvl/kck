@@ -9,13 +9,11 @@ export default {
         name: { required: true },
         selected: { default: false}
     },
-    data(){
-        return {isActive: false}
-    },
+   
     computed: {
         href(){ return '#' + this.name.toLowerCase().replace(/ /g, '-')}
     },
-  
+   
 }
 </script>
 
