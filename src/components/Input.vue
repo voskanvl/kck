@@ -1,7 +1,7 @@
 <template>
   <div class="input">
     <div class="title">{{title}}</div>
-    <input @input="$emit('change', $event.target.value)" :class="{error:!!errorMessage}" :placeholder="placeholder" :disabled="disabled" :error="!!errorMessage"/>
+    <input @input="$emit('change', $event.target.value)" :placeholder="placeholder" :disabled="disabled" :error="!!errorMessage"/>
     <div class="error" v-if="!!errorMessage">{{errorMessage}}</div>
   </div>
 </template>
@@ -20,7 +20,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss">
+<style lang="scss" scoped>
 $--input-border-clr: rgb(218,222,240);
 $--input-text-clr: rgb(184,190,216);
 $--input-disabled-bg: rgb(237,238,239);
@@ -29,12 +29,14 @@ $--input-error-clr: rgb(255,30,56);
 .input{
   margin-bottom: 1rem;
 }
-input{
+.input > input{
   border-radius: 3px;
   border: 1px solid $--input-border-clr;
   outline: none;
   color: black;
-  padding: 0.5rem 0.5rem;
+  padding: 0.5rem;
+  width: 100%;
+  margin-bottom: 0.5rem;
   &::placeholder{
     color: $--input-text-clr;
   }
