@@ -1,24 +1,50 @@
 <template>
   <div id="app">
+    <Input title="title" placeholder="Placeholder" @change="onChange($event)" errorMessage="error"/>
     <Button >Button pressed</Button>
     <Radio >Radio pressed</Radio>
+    <Tabs>
+      <Tab name="Tab 1" selected="true">
+        <div>What we do</div>
+      </Tab>
+      <Tab name="Tab 2">
+        <div>How much we do it for</div>
+      </Tab>
+      <Tab name="Tab 3">
+        <div>Why we do it</div>
+      </Tab>
+    </Tabs>
   </div>
 </template>
 
 <script>
 import Button from './components/Button.vue';
 import Radio from './components/Radio.vue';
+import Tabs from './components/Tabs.vue';
+import Tab from './components/Tab.vue';
+import Input from './components/Input.vue';
 
 
 export default {
   name: 'App',
   components: {
-    Button, Radio
+    Input, Button, Radio, Tabs, Tab
+  },
+  data:()=>{
+    return {
+      text:''
+    }
+  },
+  methods:{
+    onChange(event){
+      console.log(event)
+      this.text=event;
+    }
   }
 }
 </script>
 
-<style>
+<style lang="scss">
 :root{
   --btn-normal-bg:  rgb(0,150,218);
   --btn-clr:  white;
@@ -30,17 +56,16 @@ export default {
   --rad-hover: rgb(6, 152, 219);
   --rad-selected: rgb(6, 152, 219);
   --rad-disabled:  rgb(237,238,239);
+  --tabs-current-bg: white;
+  --tabs-passive-bg:  rgb(237,238,239);
+  --tab-active-clr:rgb(0,150,218);
+  
+
 }
 #app {
  font-family: Montserrat, Arial, Helvetica, sans-serif;
  box-sizing: border-box;
+ font-size: 14px;
 }
-.normal{
-  background-color: rgb(0,150,218);
-  color:white;
-}
-.hover{
-  background-color: rgb(199,100,74);
-  color:white;
-}
+
 </style>
