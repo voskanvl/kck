@@ -1,7 +1,8 @@
 <template>
   <div class="input">
     <div class="title">{{title}}</div>
-    <input @input="$emit('change', $event.target.value)" :placeholder="placeholder" :disabled="disabled" :error="!!errorMessage"/>
+    <input @input="$emit('change', $event.target.value)" :placeholder="placeholder" :disabled="disabled" :error="!!errorMessage" v-if="!textarea"/>
+    <textarea @input="$emit('change', $event.target.value)" :placeholder="placeholder" :disabled="disabled" :error="!!errorMessage" v-else/>
     <div class="error" v-if="!!errorMessage">{{errorMessage}}</div>
   </div>
 </template>
@@ -13,7 +14,8 @@ export default {
     title:String,
     placeholder:String,
     disabled:Boolean,
-    errorMessage:String
+    errorMessage:String,
+    textarea:Boolean
   },
   
 }
@@ -28,8 +30,10 @@ $--input-error-clr: rgb(255,30,56);
 
 .input{
   margin-bottom: 1rem;
+  width: 100%;
 }
-.input > input{
+.input > input, .input > textarea{
+  box-sizing: border-box;
   border-radius: 3px;
   border: 1px solid $--input-border-clr;
   outline: none;
@@ -47,6 +51,9 @@ $--input-error-clr: rgb(255,30,56);
   &[error='true']{
     border: 1px solid $--input-error-clr;
   }
+}
+.input > textarea{
+  height: 8rem;
 }
 .title{
   font-size: 10px;
