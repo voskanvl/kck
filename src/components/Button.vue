@@ -16,32 +16,34 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
+<style lang="scss">
 .button{
   max-width: 207px;
-  height: 56px;
+  // height: 56px;
   display: flex;
+  padding: 1rem 0;
   justify-content: stretch;
   align-items: center;
- margin-bottom: 1.5rem;
- border-radius: 30px;
- background-color: var(--btn-normal-bg);
- color:var(--btn-clr);
- cursor: pointer;
-}
-.button:hover{
-  background-color: var(--btn-hover-bg);
-}
-.button:active{
-  background-color: var(--btn-pressed-bg);
-}
-.button.disabled{
-  background-color: var(--btn-disabled-bg);
-  color: var( --btn-disabled-clr);
+  margin-bottom: 1.5rem;
+  border-radius: 30px;
+  background-color: var(--btn-normal-bg);
+  color:var(--btn-clr);
+  cursor: pointer;
+  &:hover{
+    background-color: var(--btn-hover-bg);
+  }
+  &:active{
+    background-color: var(--btn-pressed-bg);
+  }
+  &.disabled{
+    background-color: var(--btn-disabled-bg);
+    color: var( --btn-disabled-clr);
+  }
+
+  &>div{
+    width: 100%;
+    text-align: center;
+  }
 }
 
-.button>div{
-  width: 100%;
-  text-align: center;
-}
 </style>

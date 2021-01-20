@@ -2,7 +2,7 @@
   <div id="app">
     <Input title="title" placeholder="Placeholder" @change="onChange($event)" errorMessage="error"/>
     <Button >Button pressed</Button>
-    <Radio >Radio pressed</Radio>
+    <Radio title="Radio button" @checked="checked($event)" :disabled="true"/>
     <Tabs>
       <Tab name="Tab 1" selected="true">
         <div>What we do</div>
@@ -39,6 +39,9 @@ export default {
     onChange(event){
       console.log(event)
       this.text=event;
+    },
+    checked(event){
+      console.log(event)
     }
   }
 }
