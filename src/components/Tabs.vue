@@ -58,24 +58,26 @@ nav a {
   position: relative;
   display: inline-block;
   margin: 0 18px;
-  padding: 8px 13px;
+  padding: 30px 20px;
   border-radius: 3px 3px 0 0; 
   &::before,&::after{
     content: "";
     position: absolute;
     top: 0;
-    width: 23px;
+    
     height: 100%;
     background-color: $--tabs-passive-bg;
   }
   &::before{
     border-radius: 3px 0 0 0;
     left: -13px; 
+    width: 32px;
   }
   &::after{
     border-radius: 0 3px 0 0;
     transform: skew(24deg);
-    right: -13px; 
+    width: 40px;
+    right: -21px; 
     border-right: 1px solid #777;
     z-index: 1; 
   }
@@ -96,5 +98,10 @@ nav li.active {
   & a:after {
     background-color: $--tabs-active-bg;
   }
+}
+.tabs__details{
+  background-color: $--tabs-active-bg;
+  margin: -14px 29px;
+  padding: 29px 32px;
 }
 </style>

@@ -1,17 +1,23 @@
 <template>
   <div id="app">
     <Input title="title" placeholder="Placeholder" @change="onChange($event)" errorMessage="error"/>
-    <Button >Button pressed</Button>
     <Radio title="Radio button" @checked="checked($event)" :disabled="true"/>
     <Tabs>
-      <Tab name="Tab 1">
-        <div>What we do</div>
+      <Tab name="Доставка">
+        <div class="form1">
+            <Input title="ФИО" placeholder="Только кирилица"/>
+            <Input title="Телефон" placeholder="+7 (___) ___-__-__"/>
+            <Input title="Адрес доставки" placeholder="Город, улица, дом"/>
+            <Input title="Комментарий" textarea/>
+            <!-- <div>ertetr</div>
+            <div>dfgdfg</div>
+            <div>xvxvxcv</div>
+            <div>ertert</div> -->
+            <Button >Отправить</Button> 
+        </div>
       </Tab>
-      <Tab name="Tab 2">
+      <Tab name="Самовывоз">
         <div>How much we do it for</div>
-      </Tab>
-      <Tab name="Tab 3">
-        <div>Lorem ipsum</div>
       </Tab>
     </Tabs>
   </div>
@@ -70,6 +76,28 @@ export default {
  box-sizing: border-box;
  font-size: 14px;
  background-color: #f6f6f6;
+}
+Input{
+  width: 100%;
+}
+.form1{
+  display: grid;
+  grid-gap: 16px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "fio tel"
+                       "adr adr"
+                       "com com"
+                       "com com";
+  & > .input:nth-child(3){
+    grid-area: adr;
+  }
+  & > .input:nth-child(4){
+    grid-area: com;
+    height: 10rem;
+  }
+
+  
+      
 }
 
 </style>
