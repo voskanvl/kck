@@ -4,15 +4,19 @@
     <Tabs>
       <Tab name="Доставка" :selected="true">
         <div class="form1">
-          <Input title="ФИО" placeholder="Только кирилица" />
-          <Input title="Телефон" placeholder="+7 (___) ___-__-__" />
-          <Input title="Адрес доставки" placeholder="Город, улица, дом" />
+          <Input title="ФИО" placeholder="Только кирилица" role="fio" />
+          <Input title="Телефон" placeholder="+7 (___) ___-__-__" role="tel" />
+          <Input
+            title="Адрес доставки"
+            placeholder="Город, улица, дом"
+            role="adr"
+          />
           <Input title="Комментарий" textarea />
           <Button>Отправить</Button>
         </div>
       </Tab>
       <Tab name="Самовывоз">
-        <div><Input title="Адрес доставки" errorMessage="!!!!" /></div>
+        <div><Input title="Адрес доставки" /></div>
       </Tab>
       <Tab name="Контакты">
         <div>
@@ -76,15 +80,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-:root {
-  --rad-normal: rgb(219, 223, 240);
-  --rad-hover: rgb(6, 152, 219);
-  --rad-selected: rgb(6, 152, 219);
-  --rad-disabled: rgb(237, 238, 239);
-  --tabs-current-bg: white;
-  --tabs-passive-bg: rgb(237, 238, 239);
-  --tab-active-clr: rgb(0, 150, 218);
-}
 #app {
   font-family: Montserrat, Arial, Helvetica, sans-serif;
   box-sizing: border-box;

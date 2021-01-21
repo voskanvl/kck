@@ -2,14 +2,14 @@
   <div class="input">
     <div class="title">{{ title }}</div>
     <input
-      @input="$emit('change', $event.target.value)"
+      @input="inputHandler($event)"
       :placeholder="placeholder"
       :disabled="disabled"
       :error="!!errorMessage"
       v-if="!textarea"
     />
     <textarea
-      @input="$emit('change', $event.target.value)"
+      @input="inputHandler(event)"
       :placeholder="placeholder"
       :disabled="disabled"
       :error="!!errorMessage"
@@ -28,12 +28,43 @@ export default {
     title: String,
     placeholder: String,
     disabled: Boolean,
-    errorMessage: String,
     textarea: Boolean,
+    role: String,
+  },
+  data() {
+    return {
+      errorMessage: "",
+      errors: {
+        fio: "Пожалуйста, испоьзуйте только русские буквы, пробелы  и тире",
+      },
+    };
   },
   directives: {
     imask: IMaskDirective,
   },
+  methods: {
+    inputHandler({ target: { value } }) {
+      console.log(value);
+      const { ok, errorMessage } = this.validate(value, this.role);
+      if (ok) {
+        this.errorMessage = "";
+        this.$emit("change", value);
+      } else {
+        this.errorMessage = errorMessage;
+      }
+    },
+    validate(event, role) {
+      if (!role) return { ok: true };
+      if (role === "fio") {
+        const isCyrilic = !~event.search(/[^а-яёА-ЯЁ|\s|-]/g);
+        return {
+          ok: isCyrilic,
+          errorMessage: isCyrilic ? "" : this.errors.fio,
+        };
+      }
+    },
+  },
+  computed: {},
 };
 </script>
 
