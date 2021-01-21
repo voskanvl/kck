@@ -75,14 +75,8 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 :root {
-  --btn-normal-bg: rgb(0, 150, 218);
-  --btn-clr: white;
-  --btn-hover-bg: rgb(0, 129, 188);
-  --btn-pressed-bg: rgb(1, 93, 135);
-  --btn-disabled-bg: rgb(237, 238, 239);
-  --btn-disabled-clr: rgb(184, 190, 216);
   --rad-normal: rgb(219, 223, 240);
   --rad-hover: rgb(6, 152, 219);
   --rad-selected: rgb(6, 152, 219);
@@ -100,6 +94,9 @@ export default {
   margin: 0 auto;
   height: 100%;
 }
+h1 {
+  padding: 0 100px;
+}
 Input {
   width: 100%;
 }
@@ -113,13 +110,26 @@ Input {
     "fio tel"
     "adr adr"
     "com com"
-    "com com";
+    "com com"
+    "emp but";
   & > .input:nth-child(3) {
     grid-area: adr;
   }
   & > .input:nth-child(4) {
     grid-area: com;
     height: 10rem;
+  }
+  & > .button {
+    position: relative;
+    grid-column: 2/3;
+    justify-self: end;
+  }
+}
+@media (max-width: 622px) {
+  h1 {
+    font-size: 4.5vw;
+    padding: 0;
+    text-align: center;
   }
 }
 </style>

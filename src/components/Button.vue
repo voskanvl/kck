@@ -1,5 +1,5 @@
 <template>
-  <div class="button" :class="{disabled}">
+  <div class="button" :class="{ disabled }">
     <div>
       <slot></slot>
     </div>
@@ -8,16 +8,22 @@
 
 <script>
 export default {
-  name: 'Button',
+  name: "Button",
   props: {
-    disabled:Boolean
-  }
-}
+    disabled: Boolean,
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss">
-.button{
+<style lang="scss" scoped>
+$--btn-normal-bg: rgb(0, 150, 218);
+$--btn-clr: white;
+$--btn-hover-bg: rgb(0, 129, 188);
+$--btn-pressed-bg: rgb(1, 93, 135);
+$--btn-disabled-bg: rgb(237, 238, 239);
+$--btn-disabled-clr: rgb(184, 190, 216);
+.button {
   max-width: 207px;
   // height: 56px;
   display: flex;
@@ -26,24 +32,23 @@ export default {
   align-items: center;
   margin-bottom: 1.5rem;
   border-radius: 30px;
-  background-color: var(--btn-normal-bg);
-  color:var(--btn-clr);
+  background-color: $--btn-normal-bg;
+  color: $--btn-clr;
   cursor: pointer;
-  &:hover{
-    background-color: var(--btn-hover-bg);
+  &:hover {
+    background-color: $--btn-hover-bg;
   }
-  &:active{
-    background-color: var(--btn-pressed-bg);
+  &:active {
+    background-color: $--btn-pressed-bg;
   }
-  &.disabled{
-    background-color: var(--btn-disabled-bg);
-    color: var( --btn-disabled-clr);
+  &.disabled {
+    background-color: $--btn-disabled-bg;
+    color: $--btn-disabled-clr;
   }
 
-  &>div{
+  & > div {
     width: 100%;
     text-align: center;
   }
 }
-
 </style>

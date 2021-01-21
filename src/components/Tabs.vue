@@ -52,11 +52,12 @@ export default {
 
 <style lang="scss" scoped>
 $--tabs-active-bg: white;
-$--tabs-passive-bg: rgb(237, 238, 239);
+$--tabs-passive-bg: #edeeef;
 $--tab-active-clr: rgb(0, 150, 218);
 ul {
   display: flex;
   position: relative;
+  padding: 0 100px;
 }
 li {
   list-style: none;
@@ -116,11 +117,12 @@ nav li.active {
 .tabs__details {
   position: absolute;
   background-color: $--tabs-active-bg;
-  margin: -14px 29px;
+  margin: -14px 0px;
   padding: 29px 32px;
-  width: 100%;
+  // width: 100%;
   top: 91px;
-  left: 0;
+  left: 89px;
+  right: 100px;
   box-sizing: border-box;
 }
 
@@ -133,6 +135,7 @@ nav li.active {
     padding: 0;
   }
   li {
+    box-sizing: border-box;
     display: flex;
     padding: 21px 16px;
     margin: 0;
@@ -141,6 +144,7 @@ nav li.active {
     align-items: center;
     justify-content: space-between;
     border: 1px solid #dadef0;
+    background-color: $--tabs-passive-bg;
     &:nth-child(1) {
       order: 0;
     }
