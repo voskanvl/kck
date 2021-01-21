@@ -71,9 +71,10 @@ nav a {
   background-color: $--tabs-passive-bg;
   position: relative;
   display: inline-block;
-  margin: 0 18px;
-  padding: 30px 20px;
+  margin: 0 16px;
+  padding: 24px 20px;
   border-radius: 3px 3px 0 0;
+  text-indent: 6px;
   &::before,
   &::after {
     content: "";
@@ -86,11 +87,11 @@ nav a {
   &::before {
     border-radius: 3px 0 0 0;
     left: -13px;
-    width: 32px;
+    width: 39px;
   }
   &::after {
     border-radius: 0 3px 0 0;
-    transform: skew(24deg);
+    transform: skew(28.4deg);
     width: 40px;
     right: -21px;
     border-right: 1px solid #777;
@@ -117,7 +118,7 @@ nav li.active {
 .tabs__details {
   position: absolute;
   background-color: $--tabs-active-bg;
-  margin: -14px 0px;
+  margin: -27px -1px;
   padding: 29px 32px;
   // width: 100%;
   top: 91px;
