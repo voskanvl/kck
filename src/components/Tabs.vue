@@ -6,15 +6,16 @@
           v-for="(tab, idx) in tabs"
           :key="'tab' + idx"
           @click="select(tab)"
-          :class="{ active: tab.name === active }"
+          :class="{ active: tab.name === active.name }"
+          :style="{ order: idx <= activeIndex ? 0 : 2 }"
         >
           <a>{{ tab.name }}</a>
         </li>
+        <li class="tabs__details" id="form">
+          <slot></slot>
+        </li>
       </ul>
     </nav>
-    <div class="tabs__details">
-      <slot></slot>
-    </div>
   </div>
 </template>
 
@@ -23,21 +24,27 @@ export default {
   name: "Tabs",
   props: {},
   data() {
-    return { tabs: [], active: "" };
+    return { tabs: [], active: {} };
   },
   mounted() {
     this.tabs = this.$children;
-    this.active = this.tabs[0].name;
+    this.active = this.tabs[0];
     // this.$children.forEach(e=>e.selected='false');
-    this.tabs[0].isActibe = "true";
+    // this.tabs[0].isActibe = "true";
   },
   methods: {
     select(selectedTab) {
       console.log(selectedTab.name);
-      this.active = selectedTab.name;
+      console.log(this.activeIndex);
+      this.active = selectedTab;
       this.tabs.forEach((tab) => {
         tab.isActive = tab.name === selectedTab.name;
       });
+    },
+  },
+  computed: {
+    activeIndex() {
+      return this.tabs.findIndex((tab) => tab.name === this.active.name);
     },
   },
 };
@@ -49,6 +56,7 @@ $--tabs-passive-bg: rgb(237, 238, 239);
 $--tab-active-clr: rgb(0, 150, 218);
 ul {
   display: flex;
+  position: relative;
 }
 li {
   list-style: none;
@@ -106,8 +114,97 @@ nav li.active {
   }
 }
 .tabs__details {
+  position: absolute;
   background-color: $--tabs-active-bg;
   margin: -14px 29px;
   padding: 29px 32px;
+  width: 100%;
+  top: 91px;
+  left: 0;
+  box-sizing: border-box;
+}
+
+/** ---- media query */
+
+@media (max-width: 768px) {
+  ul {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+  li {
+    display: flex;
+    padding: 21px 16px;
+    margin: 0;
+    order: 2;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #dadef0;
+    &:nth-child(1) {
+      order: 0;
+    }
+  }
+  nav a {
+    /* text-decoration: none; */
+    color: black;
+    background-color: $--tabs-passive-bg;
+    position: static;
+    margin: 0px;
+    padding: 0;
+    &::before,
+    &::after {
+      content: "";
+      position: initial;
+      top: initial;
+      height: initial;
+      background-color: $--tabs-passive-bg;
+    }
+    &::before {
+      border-radius: initial;
+      left: initial;
+      width: initial;
+    }
+    &::after {
+      border-radius: initial;
+      transform: initial;
+      width: initial;
+      right: initial;
+      border-right: initial;
+      z-index: initial;
+    }
+    &:hover {
+      color: $--tab-active-clr;
+    }
+  }
+  nav li.active {
+    background-color: $--tabs-active-bg;
+    & a {
+      color: $--tab-active-clr;
+      background-color: $--tabs-active-bg;
+    }
+    & a:before {
+      z-index: 1;
+      background-color: $--tabs-active-bg; /* overlap prev element */
+    }
+    & a:after {
+      background-color: $--tabs-active-bg;
+    }
+  }
+  .tabs__details {
+    position: relative;
+    background-color: $--tabs-active-bg;
+    margin: 0;
+    padding: 21px 16px;
+    width: 100%;
+    top: 0px;
+    left: 0;
+    box-sizing: border-box;
+    order: 1;
+  }
+  .form1 {
+    position: absolute;
+    top: 10rem;
+  }
 }
 </style>

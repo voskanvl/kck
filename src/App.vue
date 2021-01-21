@@ -14,22 +14,24 @@
           <Input title="Телефон" placeholder="+7 (___) ___-__-__" />
           <Input title="Адрес доставки" placeholder="Город, улица, дом" />
           <Input title="Комментарий" textarea />
-          <!-- <div>ertetr</div>
-            <div>dfgdfg</div>
-            <div>xvxvxcv</div>
-            <div>ertert</div> -->
           <Button>Отправить</Button>
         </div>
       </Tab>
       <Tab name="Самовывоз">
         <div>How much we do it for</div>
       </Tab>
+      <Tab name="Контакты">
+        <div>Контакты</div>
+      </Tab>
+      <Tab name="О нас">
+        <div>О нас</div>
+      </Tab>
     </Tabs>
   </div>
 </template>
 
 <script>
-import Button from "./components/Button.vue";
+// import Button from "./components/Button.vue";
 import Radio from "./components/Radio.vue";
 import Tabs from "./components/Tabs.vue";
 import Tab from "./components/Tab.vue";
@@ -39,7 +41,7 @@ export default {
   name: "App",
   components: {
     Input,
-    Button,
+    // Button,
     Radio,
     Tabs,
     Tab,
@@ -84,6 +86,7 @@ export default {
   background-color: #f6f6f6;
   max-width: 1200px;
   margin: 0 auto;
+  height: 100%;
 }
 Input {
   width: 100%;
@@ -105,4 +108,5 @@ Input {
     height: 10rem;
   }
 }
+/* ---media query */
 </style>
