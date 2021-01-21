@@ -6,6 +6,7 @@
       :placeholder="placeholder"
       :disabled="disabled"
       :error="!!errorMessage"
+      ref="input"
       v-if="!textarea"
     />
     <textarea
@@ -20,8 +21,7 @@
 </template>
 
 <script>
-import { IMaskDirective } from "vue-imask";
-
+import Inputmask from "inputmask";
 export default {
   name: "Input",
   props: {
@@ -39,9 +39,7 @@ export default {
       },
     };
   },
-  directives: {
-    imask: IMaskDirective,
-  },
+
   methods: {
     inputHandler({ target: { value } }) {
       console.log(value);
@@ -62,6 +60,20 @@ export default {
           errorMessage: isCyrilic ? "" : this.errors.fio,
         };
       }
+      if (role === "tel") {
+        const im = new Inputmask("+7(999)999-99-99");
+        im.mask(this.$refs.input);
+        return { ok: true, errorMessage: "" };
+      }
+    },
+    onAccept(e) {
+      const maskRef = e.detail;
+      this.value = maskRef.value;
+      console.log("accept", maskRef.value);
+    },
+    onComplete(e) {
+      const maskRef = e.detail;
+      console.log("complete", maskRef.unmaskedValue);
     },
   },
   computed: {},
