@@ -82,6 +82,8 @@ export default {
   box-sizing: border-box;
   font-size: 14px;
   background-color: #f6f6f6;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 Input {
   width: 100%;
