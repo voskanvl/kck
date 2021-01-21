@@ -1,12 +1,6 @@
 <template>
   <div id="app">
-    <Input
-      title="title"
-      placeholder="Placeholder"
-      @change="onChange($event)"
-      errorMessage="error"
-    />
-    <Radio title="Radio button" @checked="checked($event)" :disabled="true" />
+    <h1>Выберите способ доставки</h1>
     <Tabs>
       <Tab name="Доставка" :selected="true">
         <div class="form1">
@@ -18,20 +12,38 @@
         </div>
       </Tab>
       <Tab name="Самовывоз">
-        <div>How much we do it for</div>
+        <div><Input title="Адрес доставки" errorMessage="!!!!" /></div>
       </Tab>
       <Tab name="Контакты">
-        <div>Контакты</div>
+        <div>
+          <Input
+            title="title"
+            placeholder="Placeholder"
+            @change="onChange($event)"
+            errorMessage="error"
+          />
+          <Radio
+            title="Radio button"
+            @checked="checked($event)"
+            :disabled="true"
+          />
+        </div>
       </Tab>
       <Tab name="О нас">
-        <div>О нас</div>
+        <div>
+          <Radio
+            title="Radio button"
+            @checked="checked($event)"
+            :disabled="false"
+          />
+        </div>
       </Tab>
     </Tabs>
   </div>
 </template>
 
 <script>
-// import Button from "./components/Button.vue";
+import Button from "./components/Button.vue";
 import Radio from "./components/Radio.vue";
 import Tabs from "./components/Tabs.vue";
 import Tab from "./components/Tab.vue";
@@ -41,7 +53,7 @@ export default {
   name: "App",
   components: {
     Input,
-    // Button,
+    Button,
     Radio,
     Tabs,
     Tab,
@@ -83,7 +95,7 @@ export default {
   font-family: Montserrat, Arial, Helvetica, sans-serif;
   box-sizing: border-box;
   font-size: 14px;
-  background-color: #f6f6f6;
+  background-color: f6f6f6;
   max-width: 1200px;
   margin: 0 auto;
   height: 100%;
@@ -92,6 +104,8 @@ Input {
   width: 100%;
 }
 .form1 {
+  padding: 0;
+  margin: 0;
   display: grid;
   grid-gap: 16px;
   grid-template-columns: 1fr 1fr;
@@ -108,5 +122,4 @@ Input {
     height: 10rem;
   }
 }
-/* ---media query */
 </style>
