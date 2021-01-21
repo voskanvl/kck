@@ -10,7 +10,8 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "inputmask": "^5.0.6-beta.29",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-yandex-maps": "^0.10.9"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

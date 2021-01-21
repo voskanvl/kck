@@ -5,7 +5,7 @@
       <Tab name="Доставка" :selected="true">
         <div class="form1">
           <Input title="ФИО" placeholder="Только кирилица" role="fio" />
-          <Input title="Телефон" placeholder="+7 (___) ___-__-__" role="tel" />
+          <Input title="Телефон" placeholder="+7(___) ___-__-__" role="tel" />
           <Input
             title="Адрес доставки"
             placeholder="Город, улица, дом"
@@ -16,7 +16,19 @@
         </div>
       </Tab>
       <Tab name="Самовывоз">
-        <div><Input title="Адрес доставки" /></div>
+        <div class="delivery">
+          <div class="delivery__checked">
+            <Radio
+              title="Пункт выдачи заказов Песчаная улица, дом 13"
+              :selected="true"
+            />
+            <Radio title="Пункт выдачи заказов Подсосенский переулок, 11" />
+          </div>
+          <Map />
+          <div class="delivery__sent">
+            <Button>Отправить</Button>
+          </div>
+        </div>
       </Tab>
       <Tab name="Контакты">
         <div>
@@ -52,6 +64,7 @@ import Radio from "./components/Radio.vue";
 import Tabs from "./components/Tabs.vue";
 import Tab from "./components/Tab.vue";
 import Input from "./components/Input.vue";
+import Map from "./components/Map.vue";
 
 export default {
   name: "App",
@@ -61,6 +74,7 @@ export default {
     Radio,
     Tabs,
     Tab,
+    Map,
   },
   data: () => {
     return {
@@ -94,6 +108,15 @@ h1 {
 }
 Input {
   width: 100%;
+}
+.delivery__checked {
+  display: flex;
+  padding: 41px 0px;
+}
+.delivery__sent {
+  display: flex;
+  justify-content: flex-end;
+  padding: 41px 0px;
 }
 .form1 {
   padding: 0;
