@@ -5,7 +5,7 @@
     </div>
     <yandex-map
       :settings="settings"
-      :coords="selectedPoint.coords"
+      :coords="selectedPoint"
       :zoom="11"
       style="width: 100%; height: 100%"
       :scroll-zoom="false"
@@ -90,19 +90,20 @@ export default {
       ];
     },
     selectedPoint() {
-      return this.radios.find((point) => point.adr === this.choise);
+      return (
+        this.radios.find((point) => point.adr === this.choise)?.coords || [
+          55.801131,
+          37.508167,
+        ]
+      );
     },
   },
   mounted() {
     this.radios = this.$children;
     this.radios.pop(); //  кастыль, не знаю откуда берется последний child
-    console.log(this.radios.map((e) => e.coords));
   },
   updated() {
-    console.log(
-      this.choise,
-      this.radios.map((e) => e.adr)
-    );
+    console.log(this.choise);
   },
 };
 </script>

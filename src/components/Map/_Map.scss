@@ -5,7 +5,7 @@
 }
 .list {
   display: flex;
-  justify-content: flex-end;
+  justify-content: stretch;
   padding: 41px 0px;
 }
 @media (max-width: 768px) {
