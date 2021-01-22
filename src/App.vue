@@ -53,6 +53,14 @@
               adr="Новый, 11"
               :coords="[55.747556, 37.641592]"
             />
+            <Radio
+              title="Пункт выдачи заказов Старый"
+              @checked="onCheck($event, 'Старый, 10')"
+              :selected="isSelected('Старый, 10')"
+              name="Старый"
+              adr="Старый, 10"
+              :coords="[55.747556, 37.601592]"
+            />
           </Map>
           <div class="delivery__sent">
             <Button>Отправить</Button>

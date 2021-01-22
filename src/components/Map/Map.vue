@@ -5,18 +5,18 @@
     </div>
     <yandex-map
       :settings="settings"
-      :coords="selectedPoint"
+      :coords="selectedPoint()"
       :zoom="11"
       style="width: 100%; height: 100%"
       :scroll-zoom="false"
     >
       <ymap-marker
-        v-for="radio in radios"
+        v-for="(radio, idx) in radios"
         :key="radio.name"
         :coords="radio.coords"
-        marker-id="1"
+        :marker-id="idx"
         :hint-content="radio.adr"
-        :icon="choise === radio.adr ? markerIcon.select : markerIcon.unselect"
+        :icon="selectedIcon(radio)"
       />
     </yandex-map>
   </div>
@@ -48,24 +48,16 @@ export default {
       ],
       markerIcon: {
         unselect: {
-          layout: "default#imageWithContent",
+          layout: "default#image",
           imageHref: "klipartz.com.png",
           imageSize: [43, 43],
           imageOffset: [0, 0],
-          content: "",
-          contentOffset: [10, 15],
-          contentLayout:
-            '<div style="background: red; width: 50px; color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>',
         },
         select: {
-          layout: "default#imageWithContent",
+          layout: "default#image",
           imageHref: "klipartz.select.png",
           imageSize: [43, 43],
           imageOffset: [0, 0],
-          content: "",
-          contentOffset: [10, 15],
-          contentLayout:
-            '<div style="background: red; width: 50px; color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>',
         },
       },
       radios: [
@@ -80,6 +72,24 @@ export default {
       ],
     };
   },
+  methods: {
+    selectedPoint() {
+      return (
+        this.radios.find((point) => point.adr === this.choise)?.coords || [
+          55.801131,
+          37.508167,
+        ]
+      );
+    },
+    selectedIcon({ adr }) {
+      // return this.choise === adr
+      //   ? Object.create(this.markerIcon.select) // на каждый запрос новый объект?!
+      //   : Object.create(this.markerIcon.unselect);
+      return this.choise === adr
+        ? this.markerIcon.select // на каждый запрос новый объект?!
+        : this.markerIcon.unselect;
+    },
+  },
   computed: {
     averangeCoords() {
       return [
@@ -89,22 +99,12 @@ export default {
           (this.coords[1].coords[1] - this.coords[0].coords[1]) / 2,
       ];
     },
-    selectedPoint() {
-      return (
-        this.radios.find((point) => point.adr === this.choise)?.coords || [
-          55.801131,
-          37.508167,
-        ]
-      );
-    },
   },
   mounted() {
     this.radios = this.$children;
     this.radios.pop(); //  кастыль, не знаю откуда берется последний child
   },
-  updated() {
-    console.log(this.choise);
-  },
+  updated() {},
 };
 </script>
 <style lang="scss" scoped>
