@@ -46,30 +46,6 @@
           </div>
         </div>
       </Tab>
-      <Tab name="Контакты">
-        <div>
-          <Input
-            title="title"
-            placeholder="Placeholder"
-            @change="onChange($event)"
-            errorMessage="error"
-          />
-          <Radio
-            title="Radio button"
-            @checked="checked($event)"
-            :disabled="true"
-          />
-        </div>
-      </Tab>
-      <Tab name="О нас">
-        <div>
-          <Radio
-            title="Radio button"
-            @checked="checked($event)"
-            :disabled="false"
-          />
-        </div>
-      </Tab>
     </Tabs>
   </div>
 </template>

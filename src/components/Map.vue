@@ -2,7 +2,7 @@
   <div class="wrap">
     <yandex-map
       :settings="settings"
-      :coords="coords[0].coords"
+      :coords="averangeCoords"
       :zoom="11"
       style="width: 100%; height: 100%"
       :scroll-zoom="false"
@@ -73,11 +73,17 @@ export default {
             '<div style="background: red; width: 50px; color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>',
         },
       },
-      children: this.$children,
     };
   },
-  mounted() {
-    console.log(this.children);
+  computed: {
+    averangeCoords() {
+      return [
+        this.coords[0].coords[0] +
+          (this.coords[1].coords[0] - this.coords[0].coords[0]) / 2,
+        this.coords[0].coords[1] +
+          (this.coords[1].coords[1] - this.coords[0].coords[1]) / 2,
+      ];
+    },
   },
 };
 </script>
