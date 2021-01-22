@@ -10,7 +10,7 @@
       v-if="!textarea"
     />
     <textarea
-      @input="inputHandler(event)"
+      @input="inputHandler($event)"
       :placeholder="placeholder"
       :disabled="disabled"
       :error="!!errorMessage"
@@ -51,7 +51,7 @@ export default {
       }
     },
     validate(event, role) {
-      if (!role) return { ok: true };
+      if (!role || role === "comment") return { ok: true };
       if (role === "fio" || role === "adr") {
         const isCyrilic = !~event.search(/[^а-яёА-ЯЁ|\s|-]/g);
         return {
