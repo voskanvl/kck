@@ -10,6 +10,18 @@
           :style="{ order: idx <= activeIndex ? 0 : 2 }"
         >
           <a>{{ tab.name }}</a>
+          <img
+            class="tabs__less-up"
+            src="https://img.icons8.com/material-rounded/24/4a90e2/chevron-up.png"
+          />
+          <img
+            class="tabs__less-down"
+            src="https://img.icons8.com/material-rounded/24/000000/chevron-down.png"
+          />
+          <img
+            class="tabs__less-downhover"
+            src="https://img.icons8.com/material-rounded/24/4a90e2/chevron-down.png"
+          />
         </li>
         <li class="tabs__details" id="form">
           <slot></slot>
@@ -54,6 +66,11 @@ export default {
 $--tabs-active-bg: white;
 $--tabs-passive-bg: #edeeef;
 $--tab-active-clr: rgb(0, 150, 218);
+.tabs__less-downhover,
+.tabs__less-down,
+.tabs__less-up {
+  display: none;
+}
 ul {
   display: flex;
   position: relative;
@@ -149,6 +166,20 @@ nav li.active {
     &:nth-child(1) {
       order: 0;
     }
+    & > .tabs__less-down {
+      display: block;
+    }
+    &:hover {
+      a {
+        color: $--tab-active-clr;
+      }
+      .tabs__less-down {
+        display: none;
+      }
+      .tabs__less-downhover {
+        display: block;
+      }
+    }
   }
   nav a {
     /* text-decoration: none; */
@@ -178,9 +209,6 @@ nav li.active {
       border-right: initial;
       z-index: initial;
     }
-    &:hover {
-      color: $--tab-active-clr;
-    }
   }
   nav li.active {
     background-color: $--tabs-active-bg;
@@ -194,6 +222,20 @@ nav li.active {
     }
     & a:after {
       background-color: $--tabs-active-bg;
+    }
+    & > .tabs__less-up {
+      display: block;
+    }
+    & > .tabs__less-down {
+      display: none;
+    }
+    &:hover {
+      .tabs__less-downhover {
+        display: none;
+      }
+      .tabs__less-down {
+        display: none;
+      }
     }
   }
   .tabs__details {
