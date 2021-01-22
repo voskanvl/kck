@@ -47,6 +47,10 @@ input {
     justify-self: end;
   }
 }
+.delivery {
+  display: flex;
+  flex-direction: column;
+}
 @media (max-width: 622px) {
   h1 {
     font-size: 4.5vw;
