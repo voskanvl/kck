@@ -1,5 +1,8 @@
 <template>
   <div class="wrap">
+    <div class="list">
+      <slot></slot>
+    </div>
     <yandex-map
       :settings="settings"
       :coords="averangeCoords"
@@ -8,20 +11,12 @@
       :scroll-zoom="false"
     >
       <ymap-marker
-        :coords="coords[0].coords"
+        v-for="radio in radios"
+        :key="radio.name"
+        :coords="radio.coords"
         marker-id="1"
-        :hint-content="coords[0].adr"
-        :icon="
-          choise === coords[0].adr ? markerIcon.select : markerIcon.unselect
-        "
-      />
-      <ymap-marker
-        :coords="coords[1].coords"
-        marker-id="2"
-        :hint-content="coords[1].adr"
-        :icon="
-          choise === coords[1].adr ? markerIcon.select : markerIcon.unselect
-        "
+        :hint-content="radio.adr"
+        :icon="choise === radio.adr ? markerIcon.select : markerIcon.unselect"
       />
     </yandex-map>
   </div>
@@ -73,6 +68,16 @@ export default {
             '<div style="background: red; width: 50px; color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>',
         },
       },
+      radios: [
+        {
+          adr: "First",
+          coords: [0, 0],
+        },
+        {
+          adr: "Second",
+          coords: [0, 0],
+        },
+      ],
     };
   },
   computed: {
@@ -84,6 +89,17 @@ export default {
           (this.coords[1].coords[1] - this.coords[0].coords[1]) / 2,
       ];
     },
+  },
+  mounted() {
+    this.radios = this.$children;
+    this.radios.pop(); //  кастыль, не знаю откуда берется последний child
+    console.log(this.radios.map((e) => e.coords));
+  },
+  updated() {
+    console.log(
+      this.choise,
+      this.radios.map((e) => e.adr)
+    );
   },
 };
 </script>

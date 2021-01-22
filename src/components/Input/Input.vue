@@ -62,7 +62,6 @@ export default {
       if (role === "tel") {
         const im = new Inputmask("+7 (999) 999-99-99");
         im.mask(this.$refs.input);
-        console.log(im.value);
         return { ok: true, errorMessage: "" };
       }
     },

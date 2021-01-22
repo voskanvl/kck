@@ -28,19 +28,32 @@
       </Tab>
       <Tab name="Самовывоз">
         <div class="delivery">
-          <div class="delivery__checked">
-            <Radio
+          <Map :choise="selectPoint"
+            ><Radio
               title="Пункт выдачи заказов Песчаная улица, дом 13"
-              :selected="sandstreet"
+              :selected="isSelected('Песчаная улица, дом 13')"
               @checked="onCheck($event, 'Песчаная улица, дом 13')"
+              name="Песчаная"
+              adr="Песчаная улица, дом 13"
+              :coords="[55.801131, 37.508167]"
             />
             <Radio
               title="Пункт выдачи заказов Подсосенский переулок, 11"
               @checked="onCheck($event, 'Подсосенский переулок, 11')"
-              :selected="!sandstreet"
+              :selected="isSelected('Подсосенский переулок, 11')"
+              name="Подсосенский"
+              adr="Подсосенский переулок, 11"
+              :coords="[55.757556, 37.651592]"
             />
-          </div>
-          <Map :choise="selectPoint" />
+            <Radio
+              title="Пункт выдачи заказов Новый"
+              @checked="onCheck($event, 'Новый, 11')"
+              :selected="isSelected('Новый, 11')"
+              name="Новый"
+              adr="Подсосенский переулок, 11"
+              :coords="[55.747556, 37.641592]"
+            />
+          </Map>
           <div class="delivery__sent">
             <Button>Отправить</Button>
           </div>
@@ -76,19 +89,20 @@ export default {
         tel: "",
         adr: "",
       },
-      sandstreet: true,
+      sandstreet: String,
       selectPoint: "Песчаная улица, дом 13",
     };
   },
   methods: {
     onCheck(event, adress) {
-      this.sandstreet = !this.sandstreet;
+      this.sandstreet = adress;
       this.selectPoint = adress;
-      console.log(event, adress, this.sandstreet);
     },
     onChange(event, role) {
-      console.log(this.inputData);
       this.inputData[role] = event;
+    },
+    isSelected(adress) {
+      return this.sandstreet === adress;
     },
   },
   computed: {

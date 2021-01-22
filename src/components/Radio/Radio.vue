@@ -16,6 +16,9 @@ export default {
     selected: Boolean,
     disabled: Boolean,
     title: String,
+    name: { required: true },
+    adr: String,
+    coords: Array,
   },
   data() {
     return {

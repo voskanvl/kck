@@ -46,8 +46,6 @@ export default {
   },
   methods: {
     select(selectedTab) {
-      console.log(selectedTab.name);
-      console.log(this.activeIndex);
       this.active = selectedTab;
       this.tabs.forEach((tab) => {
         tab.isActive = tab.name === selectedTab.name;

@@ -54,12 +54,3 @@ input {
     text-align: center;
   }
 }
-@media (max-width: 768px) {
-  .delivery__checked {
-    padding: 0;
-    flex-direction: column;
-    & > .radio {
-      margin-bottom: 24px;
-    }
-  }
-}
