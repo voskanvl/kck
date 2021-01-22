@@ -2,12 +2,14 @@
   <div class="wrap">
     <yandex-map
       :settings="settings"
-      :coords="coords"
-      :zoom="10"
+      :coords="coords[0]"
+      :zoom="14"
       style="width: 100%; height: 100%"
       :icon="markerIcon"
+      :scroll-zoom="false"
     >
-      <ymap-marker :coords="coords" marker-id="123" hint-content="some hint" />
+      <ymap-marker :coords="coords[1]" marker-id="1" hint-content="some hint" />
+      <ymap-marker :coords="coords[0]" marker-id="2" hint-content="some hint" />
     </yandex-map>
   </div>
 </template>
@@ -26,18 +28,21 @@ export default {
         coordorder: "latlong",
         version: "2.1",
       },
-      coords: [54.82896654088406, 39.831893822753904],
+      coords: [
+        [54.82896654088406, 39.831893822753904],
+        [54.82496654088406, 39.831893822753904],
+      ],
       markerIcon: {
-        layout: "default#imageWithContent",
-        imageHref: "https://image.flaticon.com/icons/png/512/33/33447.png",
-        imageSize: [43, 43],
-        imageOffset: [0, 0],
-        content: "123 v12",
-        contentOffset: [0, 15],
-        contentLayout:
-          '<div style="background: red; width: 50px; color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>',
+        layout: "default#image",
+        imageHref: "src/assets/klipartz.com.png",
+        imageSize: [43, 55],
+        imageOffset: [-22, -55],
       },
+      children: this.$children,
     };
+  },
+  mounted() {
+    console.log(this.children);
   },
 };
 </script>
