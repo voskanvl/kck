@@ -50,7 +50,7 @@
               @checked="onCheck($event, 'Новый, 11')"
               :selected="isSelected('Новый, 11')"
               name="Новый"
-              adr="Подсосенский переулок, 11"
+              adr="Новый, 11"
               :coords="[55.747556, 37.641592]"
             />
           </Map>
@@ -89,20 +89,18 @@ export default {
         tel: "",
         adr: "",
       },
-      sandstreet: String,
       selectPoint: "Песчаная улица, дом 13",
     };
   },
   methods: {
     onCheck(event, adress) {
-      this.sandstreet = adress;
       this.selectPoint = adress;
     },
     onChange(event, role) {
       this.inputData[role] = event;
     },
     isSelected(adress) {
-      return this.sandstreet === adress;
+      return this.selectPoint === adress;
     },
   },
   computed: {
