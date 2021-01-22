@@ -83,6 +83,8 @@ $--rad-disabled: rgb(237, 238, 239);
 .check {
   height: 20px;
   width: 20px;
+  min-width: 20px;
+  min-height: 20px;
 
   border-radius: 50%;
   border: 1px solid $--rad-normal;
