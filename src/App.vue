@@ -31,9 +31,14 @@
           <div class="delivery__checked">
             <Radio
               title="Пункт выдачи заказов Песчаная улица, дом 13"
-              :selected="true"
+              :selected="sandstreet"
+              @checked="onCheck($event, 'Песчаная улица, дом 13')"
             />
-            <Radio title="Пункт выдачи заказов Подсосенский переулок, 11" />
+            <Radio
+              title="Пункт выдачи заказов Подсосенский переулок, 11"
+              @checked="onCheck($event, 'Подсосенский переулок, 11')"
+              :selected="!sandstreet"
+            />
           </div>
           <Map />
           <div class="delivery__sent">
@@ -95,9 +100,14 @@ export default {
         tel: "",
         adr: "",
       },
+      sandstreet: true,
     };
   },
   methods: {
+    onCheck(event, adress) {
+      this.sandstreet = !this.sandstreet;
+      console.log(event, adress, this.sandstreet);
+    },
     onChange(event, role) {
       console.log(this.inputData);
       this.inputData[role] = event;

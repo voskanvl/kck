@@ -1,7 +1,7 @@
 <template>
   <div class="radio" :disabled="disabled" @click="clickHandle">
-    <div class="check" :class="{ disabled, checked }">
-      <div class="dot" v-show="checked"></div>
+    <div class="check" :class="{ disabled, selected }">
+      <div class="dot" v-show="selected"></div>
     </div>
     <div class="title">
       {{ title }}
@@ -19,13 +19,13 @@ export default {
   },
   data() {
     return {
-      checked: false,
+      checked: this.selected,
     };
   },
   methods: {
     clickHandle() {
       if (!this.disabled) {
-        this.checked = !this.checked;
+        // this.checked = !this.checked;
         this.$emit("checked", this.checked);
       }
     },
@@ -86,7 +86,7 @@ $--rad-disabled: rgb(237, 238, 239);
 
   border-radius: 50%;
   border: 1px solid $--rad-normal;
-  &.checked:not(.disabled) {
+  &.selected:not(.disabled) {
     border: 1px solid $--rad-selected;
     & .dot {
       background-color: $--rad-selected;
