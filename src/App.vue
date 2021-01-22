@@ -40,7 +40,7 @@
               :selected="!sandstreet"
             />
           </div>
-          <Map />
+          <Map :choise="selectPoint" />
           <div class="delivery__sent">
             <Button>Отправить</Button>
           </div>
@@ -101,11 +101,13 @@ export default {
         adr: "",
       },
       sandstreet: true,
+      selectPoint: "Песчаная улица, дом 13",
     };
   },
   methods: {
     onCheck(event, adress) {
       this.sandstreet = !this.sandstreet;
+      this.selectPoint = adress;
       console.log(event, adress, this.sandstreet);
     },
     onChange(event, role) {
@@ -184,6 +186,15 @@ Input {
     font-size: 4.5vw;
     padding: 0;
     text-align: center;
+  }
+}
+@media (max-width: 768px) {
+  .delivery__checked {
+    padding: 0;
+    flex-direction: column;
+    & > .radio {
+      margin-bottom: 24px;
+    }
   }
 }
 </style>

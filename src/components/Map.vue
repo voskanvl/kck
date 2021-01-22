@@ -11,13 +11,17 @@
         :coords="coords[0].coords"
         marker-id="1"
         :hint-content="coords[0].adr"
-        :icon="markerIcon"
+        :icon="
+          choise === coords[0].adr ? markerIcon.select : markerIcon.unselect
+        "
       />
       <ymap-marker
         :coords="coords[1].coords"
         marker-id="2"
         :hint-content="coords[1].adr"
-        :icon="markerIcon"
+        :icon="
+          choise === coords[1].adr ? markerIcon.select : markerIcon.unselect
+        "
       />
     </yandex-map>
   </div>
@@ -27,7 +31,7 @@
 import { yandexMap, ymapMarker } from "vue-yandex-maps";
 export default {
   name: "Map",
-  props: {},
+  props: { choise: String },
   components: { yandexMap, ymapMarker },
   data() {
     return {
@@ -48,14 +52,26 @@ export default {
         },
       ],
       markerIcon: {
-        layout: "default#imageWithContent",
-        imageHref: "klipartz.com.png",
-        imageSize: [43, 43],
-        imageOffset: [0, 0],
-        content: "",
-        contentOffset: [10, 15],
-        contentLayout:
-          '<div style="background: red; width: 50px; color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>',
+        unselect: {
+          layout: "default#imageWithContent",
+          imageHref: "klipartz.com.png",
+          imageSize: [43, 43],
+          imageOffset: [0, 0],
+          content: "",
+          contentOffset: [10, 15],
+          contentLayout:
+            '<div style="background: red; width: 50px; color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>',
+        },
+        select: {
+          layout: "default#imageWithContent",
+          imageHref: "klipartz.select.png",
+          imageSize: [43, 43],
+          imageOffset: [0, 0],
+          content: "",
+          contentOffset: [10, 15],
+          contentLayout:
+            '<div style="background: red; width: 50px; color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>',
+        },
       },
       children: this.$children,
     };
