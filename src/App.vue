@@ -22,7 +22,7 @@
             role="adr"
             @change="onChange($event, 'adr')"
           />
-          <Input title="Комментарий" textarea />
+          <Input title="Комментарий" textarea role="comment" />
           <Button :disabled="!validated"> Отправить </Button>
         </div>
       </Tab>
