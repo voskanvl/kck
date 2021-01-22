@@ -5,7 +5,7 @@
     </div>
     <yandex-map
       :settings="settings"
-      :coords="averangeCoords"
+      :coords="selectedPoint.coords"
       :zoom="11"
       style="width: 100%; height: 100%"
       :scroll-zoom="false"
@@ -38,12 +38,12 @@ export default {
       },
       coords: [
         {
-          adr: "Песчаная улица, дом 13",
-          coords: [55.801131, 37.508167],
+          adr: "",
+          coords: [0, 0],
         },
         {
-          adr: "Подсосенский переулок, 11",
-          coords: [55.757556, 37.651592],
+          adr: "",
+          coords: [0, 0],
         },
       ],
       markerIcon: {
@@ -88,6 +88,9 @@ export default {
         this.coords[0].coords[1] +
           (this.coords[1].coords[1] - this.coords[0].coords[1]) / 2,
       ];
+    },
+    selectedPoint() {
+      return this.radios.find((point) => point.adr === this.choise);
     },
   },
   mounted() {
