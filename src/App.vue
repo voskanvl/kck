@@ -90,9 +90,6 @@ export default {
       console.log(this.inputData);
       this.inputData[role] = event;
     },
-    checked(event) {
-      console.log(event);
-    },
   },
   computed: {
     validated() {
