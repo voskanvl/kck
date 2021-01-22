@@ -42,7 +42,6 @@ export default {
 
   methods: {
     inputHandler({ target: { value } }) {
-      console.log(value);
       const { ok, errorMessage } = this.validate(value, this.role);
       if (ok) {
         this.errorMessage = "";
@@ -53,7 +52,7 @@ export default {
     },
     validate(event, role) {
       if (!role) return { ok: true };
-      if (role === "fio") {
+      if (role === "fio" || role === "adr") {
         const isCyrilic = !~event.search(/[^а-яёА-ЯЁ|\s|-]/g);
         return {
           ok: isCyrilic,
@@ -61,19 +60,11 @@ export default {
         };
       }
       if (role === "tel") {
-        const im = new Inputmask("+7(999)999-99-99");
+        const im = new Inputmask("+7 (999) 999-99-99");
         im.mask(this.$refs.input);
+        console.log(im.value);
         return { ok: true, errorMessage: "" };
       }
-    },
-    onAccept(e) {
-      const maskRef = e.detail;
-      this.value = maskRef.value;
-      console.log("accept", maskRef.value);
-    },
-    onComplete(e) {
-      const maskRef = e.detail;
-      console.log("complete", maskRef.unmaskedValue);
     },
   },
   computed: {},

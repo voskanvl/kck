@@ -4,15 +4,26 @@
     <Tabs>
       <Tab name="Доставка" :selected="true">
         <div class="form1">
-          <Input title="ФИО" placeholder="Только кирилица" role="fio" />
-          <Input title="Телефон" placeholder="+7(___) ___-__-__" role="tel" />
+          <Input
+            title="ФИО"
+            placeholder="Только кирилица"
+            role="fio"
+            @change="onChange($event, 'fio')"
+          />
+          <Input
+            title="Телефон"
+            placeholder="+7 (___) ___-__-__"
+            role="tel"
+            @change="onChange($event, 'tel')"
+          />
           <Input
             title="Адрес доставки"
             placeholder="Город, улица, дом"
             role="adr"
+            @change="onChange($event, 'adr')"
           />
           <Input title="Комментарий" textarea />
-          <Button>Отправить</Button>
+          <Button :disabled="!validated"> Отправить </Button>
         </div>
       </Tab>
       <Tab name="Самовывоз">
@@ -79,15 +90,30 @@ export default {
   data: () => {
     return {
       text: "",
+      inputData: {
+        fio: "",
+        tel: "",
+        adr: "",
+      },
     };
   },
   methods: {
-    onChange(event) {
-      console.log(event);
-      this.text = event;
+    onChange(event, role) {
+      console.log(this.inputData);
+      this.inputData[role] = event;
     },
     checked(event) {
       console.log(event);
+    },
+  },
+  computed: {
+    validated() {
+      return (
+        this.inputData.fio &&
+        this.inputData.tel &&
+        this.inputData.tel.match(/\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}/) &&
+        this.inputData.adr
+      );
     },
   },
 };
