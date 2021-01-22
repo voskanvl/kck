@@ -2,6 +2,7 @@ $--input-border-clr: rgb(218, 222, 240);
 $--input-text-clr: rgb(184, 190, 216);
 $--input-disabled-bg: rgb(237, 238, 239);
 $--input-error-clr: rgb(255, 30, 56);
+$--input-focus-clr: #8288a2;
 
 .input {
   margin-bottom: 1rem;
@@ -26,6 +27,9 @@ $--input-error-clr: rgb(255, 30, 56);
   }
   &[error='true'] {
     border: 1px solid $--input-error-clr;
+  }
+  &:focus {
+    border: 1px solid $--input-focus-clr;
   }
 }
 .input > textarea {
