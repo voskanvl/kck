@@ -88,10 +88,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.wrap {
-  width: 100%;
-  height: 400px;
-}
+@import "Map";
 </style>
 
 

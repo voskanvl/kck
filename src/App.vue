@@ -51,12 +51,12 @@
 </template>
 
 <script>
-import Button from "./components/Button.vue";
-import Radio from "./components/Radio.vue";
-import Tabs from "./components/Tabs.vue";
-import Tab from "./components/Tab.vue";
-import Input from "./components/Input.vue";
-import Map from "./components/Map.vue";
+import Button from "./components/Button/Button.vue";
+import Radio from "./components/Radio/Radio.vue";
+import Tabs from "./components/Tabs/Tabs.vue";
+import Tab from "./components/Tab/Tab.vue";
+import Input from "./components/Input/Input.vue";
+import Map from "./components/Map/Map.vue";
 
 export default {
   name: "App",
@@ -105,69 +105,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#app {
-  font-family: Montserrat, Arial, Helvetica, sans-serif;
-  box-sizing: border-box;
-  font-size: 14px;
-  background-color: f6f6f6;
-  max-width: 1200px;
-  margin: 0 auto;
-  height: 100%;
-}
-h1 {
-  padding: 0 100px;
-}
-Input {
-  width: 100%;
-}
-.delivery__checked {
-  display: flex;
-  padding: 41px 0px;
-}
-.delivery__sent {
-  display: flex;
-  justify-content: flex-end;
-  padding: 41px 0px;
-}
-.form1 {
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-gap: 16px;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas:
-    "fio tel"
-    "adr adr"
-    "com com"
-    "com com"
-    "emp but";
-  & > .input:nth-child(3) {
-    grid-area: adr;
-  }
-  & > .input:nth-child(4) {
-    grid-area: com;
-    height: 10rem;
-  }
-  & > .button {
-    position: relative;
-    grid-column: 2/3;
-    justify-self: end;
-  }
-}
-@media (max-width: 622px) {
-  h1 {
-    font-size: 4.5vw;
-    padding: 0;
-    text-align: center;
-  }
-}
-@media (max-width: 768px) {
-  .delivery__checked {
-    padding: 0;
-    flex-direction: column;
-    & > .radio {
-      margin-bottom: 24px;
-    }
-  }
-}
+@import "_App.scss";
 </style>

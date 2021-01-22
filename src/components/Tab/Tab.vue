@@ -9,7 +9,7 @@ export default {
   name: "Tab",
   props: {
     name: { required: true },
-    selected: { default: false },
+    selected: { default: false }
   },
   data() {
     return {
@@ -22,9 +22,7 @@ export default {
 };
 </script>
 <style scoped>
-div {
-  width: 100%;
-}
+@import "_Tab.scss";
 </style>
 
 
