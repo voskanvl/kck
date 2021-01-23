@@ -22,7 +22,12 @@
             role="adr"
             @change="onChange($event, 'adr')"
           />
-          <Input title="Комментарий" textarea role="comment" />
+          <Input
+            title="Комментарий"
+            textarea
+            role="comment"
+            @change="onChange($event, 'comment')"
+          />
           <Button :disabled="!validated"> Отправить </Button>
         </div>
       </Tab>
@@ -91,11 +96,11 @@ export default {
   },
   data: () => {
     return {
-      text: "",
       inputData: {
         fio: "",
         tel: "",
         adr: "",
+        comment: "",
       },
       selectPoint: "Подсосенский переулок, 11",
     };
@@ -117,7 +122,8 @@ export default {
         this.inputData.fio &&
         this.inputData.tel &&
         this.inputData.tel.match(/\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}/) &&
-        this.inputData.adr
+        this.inputData.adr &&
+        this.inputData.comment
       );
     },
   },
