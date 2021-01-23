@@ -36,16 +36,6 @@ export default {
         coordorder: "latlong",
         version: "2.1",
       },
-      coords: [
-        {
-          adr: "",
-          coords: [0, 0],
-        },
-        {
-          adr: "",
-          coords: [0, 0],
-        },
-      ],
       markerIcon: {
         unselect: {
           layout: "default#image",
@@ -63,10 +53,6 @@ export default {
       radios: [
         {
           adr: "First",
-          coords: [0, 0],
-        },
-        {
-          adr: "Second",
           coords: [0, 0],
         },
       ],
@@ -102,7 +88,6 @@ export default {
     this.radios = this.$children;
     this.radios.pop(); //  кастыль, не знаю откуда берется последний child
   },
-  updated() {},
 };
 </script>
 <style lang="scss" scoped>
