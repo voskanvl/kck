@@ -28,15 +28,7 @@
       </Tab>
       <Tab name="Самовывоз">
         <div class="delivery">
-          <Map :choise="selectPoint"
-            ><Radio
-              title="Пункт выдачи заказов Песчаная улица, дом 13"
-              :selected="isSelected('Песчаная улица, дом 13')"
-              @checked="onCheck($event, 'Песчаная улица, дом 13')"
-              name="Песчаная"
-              adr="Песчаная улица, дом 13"
-              :coords="[55.801131, 37.508167]"
-            />
+          <Map :choise="selectPoint">
             <Radio
               title="Пункт выдачи заказов Подсосенский переулок, 11"
               @checked="onCheck($event, 'Подсосенский переулок, 11')"
@@ -44,6 +36,14 @@
               name="Подсосенский"
               adr="Подсосенский переулок, 11"
               :coords="[55.757556, 37.651592]"
+            />
+            <Radio
+              title="Пункт выдачи заказов Песчаная улица, дом 13"
+              :selected="isSelected('Песчаная улица, дом 13')"
+              @checked="onCheck($event, 'Песчаная улица, дом 13')"
+              name="Песчаная"
+              adr="Песчаная улица, дом 13"
+              :coords="[55.801131, 37.508167]"
             />
             <Radio
               title="Пункт выдачи заказов Новый"
@@ -97,7 +97,7 @@ export default {
         tel: "",
         adr: "",
       },
-      selectPoint: "Песчаная улица, дом 13",
+      selectPoint: "Подсосенский переулок, 11",
     };
   },
   methods: {

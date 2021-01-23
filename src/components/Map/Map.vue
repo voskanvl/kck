@@ -76,15 +76,12 @@ export default {
     selectedPoint() {
       return (
         this.radios.find((point) => point.adr === this.choise)?.coords || [
-          55.801131,
-          37.508167,
+          55.757556,
+          37.651592,
         ]
       );
     },
     selectedIcon({ adr }) {
-      // return this.choise === adr
-      //   ? Object.create(this.markerIcon.select) // на каждый запрос новый объект?!
-      //   : Object.create(this.markerIcon.unselect);
       return this.choise === adr
         ? this.markerIcon.select // на каждый запрос новый объект?!
         : this.markerIcon.unselect;
@@ -92,12 +89,13 @@ export default {
   },
   computed: {
     averangeCoords() {
-      return [
-        this.coords[0].coords[0] +
-          (this.coords[1].coords[0] - this.coords[0].coords[0]) / 2,
-        this.coords[0].coords[1] +
-          (this.coords[1].coords[1] - this.coords[0].coords[1]) / 2,
-      ];
+      const averangeX =
+        this.radios.reduce((acc, radio) => (acc += radio.coords[0]), 0) /
+        this.radios.length;
+      const averangeY =
+        this.radios.reduce((acc, radio) => (acc += radio.coords[1]), 0) /
+        this.radios.length;
+      return [averangeX, averangeY];
     },
   },
   mounted() {
