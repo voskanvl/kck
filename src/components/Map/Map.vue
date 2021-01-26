@@ -100,12 +100,11 @@ export default {
         const coords = json.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos
           .split(" ")
           .reverse();
-        // this.newCoords.push(coords);
         e.coords = coords;
-        this.$forceUpdate();
       } catch (error) {
         throw Error(error);
       }
+      this.$forceUpdate();
     });
   },
 };
