@@ -6,7 +6,7 @@
     <yandex-map
       :settings="settings"
       :coords="selectedPoint()"
-      :zoom="11"
+      :zoom="7"
       style="width: 100%; height: 100%"
       :scroll-zoom="false"
     >
@@ -53,9 +53,11 @@ export default {
       radios: [
         {
           adr: "First",
-          coords: [0, 0],
+          name: "First",
+          coords: [55, 37],
         },
       ],
+      coords: new Map([["First", [55, 37]]]),
     };
   },
   methods: {
@@ -85,8 +87,27 @@ export default {
     },
   },
   mounted() {
-    this.radios = this.$children;
+    this.radios = [
+      ...this.$children.map((e) => ({ name: e.name, adr: e.adr })),
+    ];
     this.radios.pop(); //  кастыль, не знаю откуда берется последний child
+    this.radios.forEach(async (e) => {
+      const adr = e.adr.replace(",", "").replace(" ", "+");
+      try {
+        const response = await fetch(
+          `https://geocode-maps.yandex.ru/1.x/?apikey=9b27ecf5-fac6-419d-b8f5-184a9818db91&format=json&geocode=${adr}`
+        );
+        const json = await response.json();
+        const coords = json.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos
+          .split(" ")
+          .reverse();
+        // this.newCoords.push(coords);
+        e.coords = coords;
+        console.dir(this.radios);
+      } catch (error) {
+        throw Error(error);
+      }
+    });
   },
 };
 </script>

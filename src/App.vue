@@ -36,35 +36,31 @@
           <Map :choise="selectPoint">
             <Radio
               title="Пункт выдачи заказов Подсосенский переулок, 11"
-              @checked="onCheck($event, 'Подсосенский переулок, 11')"
-              :selected="isSelected('Подсосенский переулок, 11')"
+              @checked="onCheck($event, 'Москва, Подсосенский переулок, 11')"
+              :selected="isSelected('Москва, Подсосенский переулок, 11')"
               name="Подсосенский"
-              adr="Подсосенский переулок, 11"
-              :coords="[55.757556, 37.651592]"
+              adr="Москва, Подсосенский переулок, 11"
             />
             <Radio
               title="Пункт выдачи заказов Песчаная улица, дом 13"
-              :selected="isSelected('Песчаная улица, дом 13')"
-              @checked="onCheck($event, 'Песчаная улица, дом 13')"
+              :selected="isSelected('Москва, Песчаная улица, дом 13')"
+              @checked="onCheck($event, 'Москва, Песчаная улица, дом 13')"
               name="Песчаная"
-              adr="Песчаная улица, дом 13"
-              :coords="[55.801131, 37.508167]"
+              adr="Москва, Песчаная улица, дом 13"
             />
             <Radio
               title="Пункт выдачи заказов Новый"
-              @checked="onCheck($event, 'Новый, 11')"
-              :selected="isSelected('Новый, 11')"
+              @checked="onCheck($event, 'Москва, Новый, 11')"
+              :selected="isSelected('Москва, Новый, 11')"
               name="Новый"
-              adr="Новый, 11"
-              :coords="[55.747556, 37.641592]"
+              adr="Москва, Новый, 11"
             />
             <Radio
-              title="Пункт выдачи заказов Старый"
-              @checked="onCheck($event, 'Старый, 10')"
-              :selected="isSelected('Старый, 10')"
+              title="Москва, Пункт выдачи заказов Старый"
+              @checked="onCheck($event, 'Москва, Старый, 10')"
+              :selected="isSelected('Москва, Старый, 10')"
               name="Старый"
-              adr="Старый, 10"
-              :coords="[55.747556, 37.601592]"
+              adr="Москва, Старый, 10"
             />
           </Map>
           <div class="delivery__sent">
@@ -102,7 +98,7 @@ export default {
         adr: "",
         comment: "",
       },
-      selectPoint: "Подсосенский переулок, 11",
+      selectPoint: "Москва, Подсосенский переулок, 11",
     };
   },
   methods: {

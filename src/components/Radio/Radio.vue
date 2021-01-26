@@ -18,7 +18,6 @@ export default {
     title: String,
     name: { required: true },
     adr: String,
-    coords: Array,
   },
   data() {
     return {
