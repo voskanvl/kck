@@ -57,7 +57,6 @@ export default {
           coords: [55, 37],
         },
       ],
-      coords: new Map([["First", [55, 37]]]),
     };
   },
   methods: {
@@ -103,7 +102,7 @@ export default {
           .reverse();
         // this.newCoords.push(coords);
         e.coords = coords;
-        console.dir(this.radios);
+        this.$forceUpdate();
       } catch (error) {
         throw Error(error);
       }
