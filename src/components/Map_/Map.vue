@@ -100,19 +100,23 @@ export default {
       }
     },
     normolizeScale() {
-      const q = window.ymaps.geoQuery(this.myMap.geoObjects);
+      // const q = window.ymaps.geoQuery(this.myMap.geoObjects);
 
-      while (
-        q.searchIntersect(this.myMap).getLength() < this.radios.length &&
-        this.myMap.getZoom() >= 1
-      ) {
-        console.log(
-          this.myMap.getZoom(),
-          q.searchIntersect(this.myMap).getLength()
-        );
+      // while (
+      //   q.searchIntersect(this.myMap).getLength() < this.radios.length &&
+      //   this.myMap.getZoom() >= 1
+      // ) {
+      //   console.log(
+      //     this.myMap.getZoom(),
+      //     q.searchIntersect(this.myMap).getLength()
+      //   );
 
-        this.myMap.setZoom(this.myMap.getZoom() - 1);
-      }
+      //   this.myMap.setZoom(this.myMap.getZoom() - 1);
+      // }
+      this.myMap.setBounds(this.myMap.geoObjects.getBounds(), {
+        checkZoomRange: true,
+        zoomMargin: 9,
+      });
     },
   },
   mounted() {
@@ -122,6 +126,7 @@ export default {
     console.log("updated");
     if (this.activeTab === "Самовывоз") {
       this.normolizeScale();
+
       setTimeout(() => {
         const index = this.radios.findIndex(
           (e) => ~e.adr.search(this.selectPoint)
