@@ -20,6 +20,7 @@ export default {
       apiKey: "9b27ecf5-fac6-419d-b8f5-184a9818db91",
       myMap: {},
       radios: [],
+      normolize: this.normolizeScale(),
     };
   },
   methods: {
@@ -113,19 +114,28 @@ export default {
 
       //   this.myMap.setZoom(this.myMap.getZoom() - 1);
       // }
-      this.myMap.setBounds(this.myMap.geoObjects.getBounds(), {
-        checkZoomRange: true,
-        zoomMargin: 9,
-      });
+      let done = false;
+      return () => {
+        if (!done) {
+          done = true;
+          this.myMap.setBounds(this.myMap.geoObjects.getBounds(), {
+            checkZoomRange: true,
+            zoomMargin: 9,
+          });
+          return;
+        }
+        return;
+      };
     },
   },
   mounted() {
     this.mountMap();
   },
   updated() {
-    console.log("updated");
     if (this.activeTab === "Самовывоз") {
-      this.normolizeScale();
+      setTimeout(() => {
+        this.normolize();
+      }, 200);
 
       setTimeout(() => {
         const index = this.radios.findIndex(
@@ -147,7 +157,7 @@ export default {
         });
         this.myMap.panTo(this.radios[index].coords);
         // this.myMap.setZoom(14);
-      }, 200);
+      }, 300);
     }
   },
 };
