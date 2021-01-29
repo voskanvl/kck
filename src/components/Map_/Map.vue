@@ -140,7 +140,7 @@ export default {
             );
           }
         });
-        this.myMap.setCenter(this.radios[index].coords);
+        this.myMap.panTo(this.radios[index].coords);
         // this.myMap.setZoom(14);
       }, 200);
     }
