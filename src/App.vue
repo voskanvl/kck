@@ -33,7 +33,11 @@
       </Tab>
       <Tab name="Самовывоз" :selected="activeTab === 'Самовывоз'">
         <div class="delivery">
-          <Map :choise="selectPoint" :activeTab="activeTab">
+          <Map
+            :choise="selectPoint"
+            :activeTab="activeTab"
+            :selectPoint="selectPoint"
+          >
             <Radio
               title="Пункт выдачи заказов Подсосенский переулок, 11"
               @checked="onCheck($event, 'Подсосенский переулок, 11')"
@@ -105,6 +109,10 @@ export default {
   methods: {
     onCheck(event, adress) {
       this.selectPoint = adress;
+      console.log(
+        "🚀 ~ file: App.vue ~ line 112 ~ onCheck ~ this.selectPoint",
+        this.selectPoint
+      );
     },
     onChange(event, role) {
       this.inputData[role] = event;

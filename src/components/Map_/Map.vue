@@ -13,6 +13,7 @@ export default {
   props: {
     choise: String,
     activeTab: String,
+    selectPoint: String,
   },
   data() {
     return {
@@ -58,9 +59,19 @@ export default {
         {
           // Опции.
           // Иконка метки будет растягиваться под размер ее содержимого.
-          preset: "islands#blackStretchyIcon",
+          // preset: "islands#blackStretchyIcon",
           // Метку можно перемещать.
-          draggable: true,
+          draggable: false,
+          // Опции.
+          // Необходимо указать данный тип макета.
+          iconLayout: "default#image",
+          // Своё изображение иконки метки.
+          iconImageHref: "klipartz.com.png",
+          // Размеры метки.
+          iconImageSize: [40, 40],
+          // Смещение левого верхнего угла иконки относительно
+          // её "ножки" (точки привязки).
+          // iconImageOffset: [-5, -38]
         }
       );
     },
@@ -108,14 +119,33 @@ export default {
     this.mountMap();
   },
   updated() {
+    console.log("updated");
     if (this.activeTab === "Самовывоз") {
+      this.normolizeScale();
       setTimeout(() => {
-        this.normolizeScale();
+        const index = this.radios.findIndex(
+          (e) => ~e.adr.search(this.selectPoint)
+        );
+
+        this.radios.forEach((e, i) => {
+          if (i === index) {
+            this.radios[i].geoObj.options.set(
+              "iconImageHref",
+              "klipartz.select.png"
+            );
+          } else {
+            this.radios[i].geoObj.options.set(
+              "iconImageHref",
+              "klipartz.com.png"
+            );
+          }
+        });
+        this.myMap.setCenter(this.radios[index].coords);
+        // this.myMap.setZoom(14);
       }, 200);
     }
   },
 };
-//MY_MAP.geoObjects.get(0).options.set('preset','islands#blueIcon')
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
