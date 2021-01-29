@@ -39,32 +39,28 @@
               @checked="onCheck($event, 'Подсосенский переулок, 11')"
               :selected="isSelected('Подсосенский переулок, 11')"
               name="Подсосенский"
-              adr="Подсосенский переулок, 11"
-              :coords="[55.757556, 37.651592]"
+              adr="Москва, Подсосенский переулок, 11"
             />
             <Radio
               title="Пункт выдачи заказов Песчаная улица, дом 13"
               :selected="isSelected('Песчаная улица, дом 13')"
               @checked="onCheck($event, 'Песчаная улица, дом 13')"
               name="Песчаная"
-              adr="Песчаная улица, дом 13"
-              :coords="[55.801131, 37.508167]"
+              adr="Москва, Песчаная улица, дом 13"
             />
             <Radio
               title="Пункт выдачи заказов Новый"
               @checked="onCheck($event, 'Новый, 11')"
               :selected="isSelected('Новый, 11')"
               name="Новый"
-              adr="Новый, 11"
-              :coords="[55.747556, 37.641592]"
+              adr="Москва, Новый, 11"
             />
             <Radio
               title="Пункт выдачи заказов Старый"
               @checked="onCheck($event, 'Старый, 10')"
               :selected="isSelected('Старый, 10')"
               name="Старый"
-              adr="Старый, 10"
-              :coords="[55.747556, 37.601592]"
+              adr="Москва, Старый, 10"
             />
           </Map>
           <div class="delivery__sent">
@@ -82,7 +78,7 @@ import Radio from "./components/Radio/Radio.vue";
 import Tabs from "./components/Tabs/Tabs.vue";
 import Tab from "./components/Tab/Tab.vue";
 import Input from "./components/Input/Input.vue";
-import Map from "./components/Map/Map.vue";
+import Map from "./components/Map_/Map.vue";
 
 export default {
   name: "App",
