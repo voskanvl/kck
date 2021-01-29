@@ -46,6 +46,10 @@ export default {
   },
   methods: {
     select(selectedTab) {
+      this.$emit("changeTab", {
+        oldValue: this.active,
+        newValue: selectedTab,
+      });
       this.active = selectedTab;
       this.tabs.forEach((tab) => {
         tab.isActive = tab.name === selectedTab.name;

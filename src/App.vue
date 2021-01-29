@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <h1>Выберите способ доставки</h1>
-    <Tabs>
-      <Tab name="Доставка" :selected="true">
+    <Tabs @changeTab="changeTab($event)">
+      <Tab name="Доставка" :selected="activeTab === 'Доставка'">
         <div class="form1">
           <Input
             title="ФИО"
@@ -31,9 +31,9 @@
           <Button :disabled="!validated"> Отправить </Button>
         </div>
       </Tab>
-      <Tab name="Самовывоз">
+      <Tab name="Самовывоз" :selected="activeTab === 'Самовывоз'">
         <div class="delivery">
-          <Map :choise="selectPoint">
+          <Map :choise="selectPoint" :activeTab="activeTab">
             <Radio
               title="Пункт выдачи заказов Подсосенский переулок, 11"
               @checked="onCheck($event, 'Подсосенский переулок, 11')"
@@ -99,6 +99,7 @@ export default {
         comment: "",
       },
       selectPoint: "Подсосенский переулок, 11",
+      activeTab: "Доставка",
     };
   },
   methods: {
@@ -110,6 +111,9 @@ export default {
     },
     isSelected(adress) {
       return this.selectPoint === adress;
+    },
+    changeTab(event) {
+      this.activeTab = event.newValue.name;
     },
   },
   computed: {

@@ -12,6 +12,7 @@ export default {
   name: "Map",
   props: {
     choise: String,
+    activeTab: String,
   },
   data() {
     return {
@@ -28,21 +29,16 @@ export default {
         controls: ["geolocationControl", "zoomControl"],
       });
       this.radios = this.$children.map((e) => ({ name: e.name, adr: e.adr }));
-      // await this.setCoords();
       console.log(this.radios);
-      const s = this.radios.forEach(async (e) => {
-        const coords = await this.setCoords(e);
-        console.log(
-          "🚀 ~ file: Map.vue ~ line 35 ~ this.radios.forEach ~ coords",
-          coords
-        );
-        this.myMap.geoObjects.add(
-          new window.ymaps.Placemark(coords, {}, { preset: "islands#redIcon" })
-        );
-        return { ...e, coords };
-      });
-      console.log("🚀 ~ file: Map.vue ~ line 41 ~ s ~ s", s);
-
+      await Promise.all(
+        this.radios.map(async (e) => {
+          const coords = await this.setCoords(e);
+          const geoObj = this.setGeoObject(coords);
+          this.myMap.geoObjects.add(geoObj);
+          e.coords = coords;
+          e.geoObj = geoObj;
+        })
+      );
       window.RADIO = this.radios;
       window.MY_MAP = this.myMap;
     },
@@ -83,17 +79,6 @@ export default {
         window.ymaps.ready(this.initializeYandexMap)
       );
     },
-    // async setCoords() {
-    //   this.radios.forEach(async (e) => {
-    //     try {
-    //       const myGeocoder = window.ymaps.geocode(e.adr);
-    //       const res = await myGeocoder;
-    //       e.coords = res.geoObjects.get(0).geometry._coordinates.slice(0, 2);
-    //     } catch (error) {
-    //       throw Error(error);
-    //     }
-    //   });
-    // },
     async setCoords({ adr }) {
       try {
         const myGeocoder = window.ymaps.geocode(adr);
@@ -103,12 +88,34 @@ export default {
         throw Error(error);
       }
     },
-    addPlacemark() {},
+    normolizeScale() {
+      const q = window.ymaps.geoQuery(this.myMap.geoObjects);
+
+      while (
+        q.searchIntersect(this.myMap).getLength() < this.radios.length &&
+        this.myMap.getZoom() >= 1
+      ) {
+        console.log(
+          this.myMap.getZoom(),
+          q.searchIntersect(this.myMap).getLength()
+        );
+
+        this.myMap.setZoom(this.myMap.getZoom() - 1);
+      }
+    },
   },
   mounted() {
     this.mountMap();
   },
+  updated() {
+    if (this.activeTab === "Самовывоз") {
+      setTimeout(() => {
+        this.normolizeScale();
+      }, 200);
+    }
+  },
 };
+//MY_MAP.geoObjects.get(0).options.set('preset','islands#blueIcon')
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
