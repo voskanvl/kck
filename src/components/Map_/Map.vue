@@ -30,6 +30,7 @@ export default {
         zoom: 15,
         controls: ["geolocationControl", "zoomControl"],
       });
+      this.myMap.behaviors.disable("scrollZoom");
       this.radios = this.$children.map((e) => ({ name: e.name, adr: e.adr }));
       console.log(this.radios);
       await Promise.all(
@@ -41,8 +42,6 @@ export default {
           e.geoObj = geoObj;
         })
       );
-      window.RADIO = this.radios;
-      window.MY_MAP = this.myMap;
     },
     setGeoObject(coords) {
       return new window.ymaps.GeoObject(
@@ -51,28 +50,12 @@ export default {
             type: "Point",
             coordinates: coords,
           },
-          properties: {
-            // Контент метки.
-            iconContent: "Я тащусь",
-            hintContent: "Ну давай уже тащи",
-          },
         },
         {
-          // Опции.
-          // Иконка метки будет растягиваться под размер ее содержимого.
-          // preset: "islands#blackStretchyIcon",
-          // Метку можно перемещать.
           draggable: false,
-          // Опции.
-          // Необходимо указать данный тип макета.
           iconLayout: "default#image",
-          // Своё изображение иконки метки.
           iconImageHref: "klipartz.com.png",
-          // Размеры метки.
           iconImageSize: [40, 40],
-          // Смещение левого верхнего угла иконки относительно
-          // её "ножки" (точки привязки).
-          // iconImageOffset: [-5, -38]
         }
       );
     },
@@ -101,19 +84,6 @@ export default {
       }
     },
     normolizeScale() {
-      // const q = window.ymaps.geoQuery(this.myMap.geoObjects);
-
-      // while (
-      //   q.searchIntersect(this.myMap).getLength() < this.radios.length &&
-      //   this.myMap.getZoom() >= 1
-      // ) {
-      //   console.log(
-      //     this.myMap.getZoom(),
-      //     q.searchIntersect(this.myMap).getLength()
-      //   );
-
-      //   this.myMap.setZoom(this.myMap.getZoom() - 1);
-      // }
       let done = false;
       return () => {
         if (!done) {
@@ -156,14 +126,12 @@ export default {
           }
         });
         this.myMap.panTo(this.radios[index].coords);
-        // this.myMap.setZoom(14);
       }, 300);
     }
   },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 @import "Map";
 </style>
