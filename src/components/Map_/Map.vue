@@ -32,7 +32,6 @@ export default {
       });
       this.myMap.behaviors.disable("scrollZoom");
       this.radios = this.$children.map((e) => ({ name: e.name, adr: e.adr }));
-      console.log(this.radios);
       await Promise.all(
         this.radios.map(async (e) => {
           const coords = await this.setCoords(e);
@@ -60,7 +59,6 @@ export default {
       );
     },
     mountMap() {
-      console.log("mounted");
       // Установливаем скрипты для использования яндекс карты
       let scriptYandexMap = document.createElement("script");
       scriptYandexMap.setAttribute(
