@@ -50,8 +50,6 @@ export default {
         this.errorMessage = errorMessage;
       }
     },
-  },
-  computed: {
     validate(event, role) {
       if (!role || role === "comment") return { ok: true };
       if (role === "fio" || role === "adr") {
@@ -68,6 +66,7 @@ export default {
       }
     },
   },
+  computed: {},
 };
 </script>
 

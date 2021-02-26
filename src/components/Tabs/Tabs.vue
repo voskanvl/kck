@@ -41,15 +41,9 @@ export default {
   mounted() {
     this.tabs = this.$children;
     this.active = this.tabs[0];
-    // this.$children.forEach(e=>e.selected='false');
-    // this.tabs[0].isActibe = "true";
   },
   methods: {
     select(selectedTab) {
-      this.$emit("changeTab", {
-        oldValue: this.active,
-        newValue: selectedTab,
-      });
       this.active = selectedTab;
       this.tabs.forEach((tab) => {
         tab.isActive = tab.name === selectedTab.name;

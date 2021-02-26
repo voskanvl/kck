@@ -9,7 +9,7 @@ export default {
   name: "Tab",
   props: {
     name: { required: true },
-    selected: { default: false }
+    selected: { default: false },
   },
   data() {
     return {
@@ -18,6 +18,15 @@ export default {
   },
   mounted() {
     this.isActive = this.selected;
+  },
+  watch: {
+    selected: function (val) {
+      let activeTab = this.$slots.default[0].componentOptions.propsData
+        ?.activeTab;
+      if (val && activeTab) {
+        activeTab = this.name;
+      }
+    },
   },
 };
 </script>
