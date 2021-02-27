@@ -33,7 +33,7 @@ export default {
   props: { activeTab: String },
   data: () => {
     return {
-      selectPoint: "Подсосенский переулок, 11",
+      selectPoint: "",
       radios: null,
       tab: "",
     };
@@ -49,6 +49,7 @@ export default {
   mounted() {
     this.radios = takePoints;
     this.tab = this.activeTab;
+    this.selectPoint = this.radios[0].adr;
   },
 };
 </script>
