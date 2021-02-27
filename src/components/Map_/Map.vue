@@ -100,6 +100,7 @@ export default {
     this.mountMap();
   },
   updated() {
+    console.log("this.activeTab", this.activeTab);
     if (this.activeTab === "Самовывоз") {
       setTimeout(() => {
         this.normolize();

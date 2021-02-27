@@ -20,12 +20,8 @@ export default {
     this.isActive = this.selected;
   },
   watch: {
-    selected: function (val) {
-      let activeTab = this.$slots.default[0].componentOptions.propsData
-        ?.activeTab;
-      if (val && activeTab) {
-        activeTab = this.name;
-      }
+    isActive: function (val) {
+      if (val && this.$children[0]?.tab) this.$children[0].tab = this.name;
     },
   },
 };

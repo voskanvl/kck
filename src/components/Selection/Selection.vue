@@ -1,10 +1,6 @@
 <template>
   <div class="delivery">
-    <Map
-      :choise="selectPoint"
-      :activeTab="activeTab"
-      :selectPoint="selectPoint"
-    >
+    <Map :choise="selectPoint" :activeTab="tab" :selectPoint="selectPoint">
       <Radio
         v-for="i of radios"
         :title="i.title"
@@ -39,6 +35,7 @@ export default {
     return {
       selectPoint: "Подсосенский переулок, 11",
       radios: null,
+      tab: "",
     };
   },
   methods: {
@@ -51,6 +48,7 @@ export default {
   },
   mounted() {
     this.radios = takePoints;
+    this.tab = this.activeTab;
   },
 };
 </script>
